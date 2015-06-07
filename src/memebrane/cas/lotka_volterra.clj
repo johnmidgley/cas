@@ -12,6 +12,16 @@
   (let [lv (partial lotka-volterra a b c d e f)]
     (iterate #(apply lv %) [x0 y0])))
 
+(defn xy [a b c d e f x0 y0 t]
+  (->> (lotka-volterra-seq a b c d e f x0 y0)
+       (drop t)
+       first))
+
+(defn x [a b c d e f x0 y0 t]
+  (first (xy a b c d e f x0 y0 t)))
+
+(defn y [a b c d e f x0 y0 t]
+  (second (xy a b c d e f x0 y0 t)))
 
 
 
